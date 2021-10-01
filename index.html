@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="TicTacToe | Try to beat my ai in this simple game">
+		<meta name="keyword" content="game, tictactoe, ai, strategic game">
+		<meta name="author" content="Enã Lins">
+		
+    <title>TicTacToe</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="https://enalins.com.br/projetos/tictactoe/favicon.png">
+    
+		<!-- BOOTSTRAP -->
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="container d-flex justify-content-center">
+        <div class="d-flex justify-content-center align-items-center" style="height: 60px; width: 60px; border-bottom-left-radius: 15px; font-weight: 600; font-size: 1.3rem; background-color: var(--azul);" id="human">0</div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 70px; width: 70px; border-bottom-left-radius: 11px;border-bottom-right-radius: 15px; background-color: var(--azul);">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user fa-w-14" style="height: 35px;"><path fill="#FFFFFF" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" class=""></path></svg>
+        </div>
+
+        <span style="font-size: 1.8rem; font-weight: 600; color: var(--preto);">&nbsp;&nbsp;&nbsp;&nbsp;&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        
+        <div class="d-flex justify-content-center align-items-center" style="height: 70px; width: 70px; border-bottom-left-radius: 15px; border-bottom-right-radius: 11px; background-color: var(--amarelo);">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-robot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-robot fa-w-14" style="height: 35px;"><path fill="#FFFFFF" d="M17.99986,256H48V128H17.99986A17.9784,17.9784,0,0,0,0,146v92A17.97965,17.97965,0,0,0,17.99986,256Zm412-128H400V256h29.99985A17.97847,17.97847,0,0,0,448,238V146A17.97722,17.97722,0,0,0,429.99985,128ZM116,320H332a36.0356,36.0356,0,0,0,36-36V109a44.98411,44.98411,0,0,0-45-45H241.99985V18a18,18,0,1,0-36,0V64H125a44.98536,44.98536,0,0,0-45,45V284A36.03685,36.03685,0,0,0,116,320Zm188-48H272V240h32ZM288,128a32,32,0,1,1-32,32A31.99658,31.99658,0,0,1,288,128ZM208,240h32v32H208Zm-32,32H144V240h32ZM160,128a32,32,0,1,1-32,32A31.99658,31.99658,0,0,1,160,128ZM352,352H96A95.99975,95.99975,0,0,0,0,448v32a32.00033,32.00033,0,0,0,32,32h96V448a31.99908,31.99908,0,0,1,32-32H288a31.99908,31.99908,0,0,1,32,32v64h96a32.00033,32.00033,0,0,0,32-32V448A95.99975,95.99975,0,0,0,352,352ZM176,448a15.99954,15.99954,0,0,0-16,16v48h32V464A15.99954,15.99954,0,0,0,176,448Zm96,0a16,16,0,1,0,16,16A15.99954,15.99954,0,0,0,272,448Z" class=""></path></svg>
+        </div>
+        <div class="d-flex justify-content-center align-items-center" style="height: 60px;width: 60px; border-bottom-right-radius: 15px;font-weight: 600; font-size: 1.3rem; background-color: var(--amarelo);" id="machine">0</span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 main-content">
+          <section style="display: none; cursor: wait; position: absolute; width: 100%; height: 100%; z-index: 9999;" id="waitBox"></section>
+          <section class="container">
+            <div class="row m-0" style="border-radius: 4px;overflow: hidden;">
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="1x1" style="border-right: solid 5px var(--preto);border-bottom: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="1x2" style="border-bottom: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="1x3" style="border-left: solid 5px var(--preto);border-bottom: solid 5px var(--preto);"></div>
+              </div>      
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="2x1" style="border-right: solid 5px var(--preto);border-bottom: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="2x2" style="border-bottom: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="2x3" style="border-left: solid 5px var(--preto);border-bottom: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="3x1" style="border-right: solid 5px var(--preto);"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="3x2"></div>
+              </div>
+              <div class="col-4">
+                <div class="marker bg-std" onclick="jogada(this)" id="3x3" style="border-left: solid 5px var(--preto);"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="row">
+            <div class="col-12">
+              <button type="button" onclick="resetGame()" style="background-color: var(--azul);">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-play fa-w-14 fa-2x"><path fill="#ffffff" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" class=""></path></svg>
+                Novo Jogo
+              </button>
+            </div>
+            <div class="col-12">
+              <button type="button" onclick="window.location.reload()" style="background-color: var(--amarelo);">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sync-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-sync-alt fa-w-16"><path fill="#ffffff" d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z" class=""></path></svg>
+                Resetar
+              </button>
+            </div>
+            <div class="col-12">
+              <button type="button" onclick="window.location.href='../../'" style="background-color: var(--vermelho);">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-undo-alt fa-w-16 fa-2x"><path fill="#ffffff" d="M255.545 8c-66.269.119-126.438 26.233-170.86 68.685L48.971 40.971C33.851 25.851 8 36.559 8 57.941V192c0 13.255 10.745 24 24 24h134.059c21.382 0 32.09-25.851 16.971-40.971l-41.75-41.75c30.864-28.899 70.801-44.907 113.23-45.273 92.398-.798 170.283 73.977 169.484 169.442C423.236 348.009 349.816 424 256 424c-41.127 0-79.997-14.678-110.63-41.556-4.743-4.161-11.906-3.908-16.368.553L89.34 422.659c-4.872 4.872-4.631 12.815.482 17.433C133.798 479.813 192.074 504 256 504c136.966 0 247.999-111.033 248-247.998C504.001 119.193 392.354 7.755 255.545 8z" class=""></path></svg>
+                voltar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>Desenvolvido por Enã Lins com ajuda dos meus amigos da internet: Bootstrap, W3 e Stackoverflow :)</p>
+      </div>
+    </footer>
+  </body>
+</html>
